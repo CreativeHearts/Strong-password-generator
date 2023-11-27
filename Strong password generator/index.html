@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontsstles.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English+SC&family=Inter:wght@400;500;700&family=Kaushan+Script&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;800&family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Strong PassWord Generator, Using H/C/J Creative Heart</title>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="logo name s.png" alt="logo" />
+      <h2>Creative <span>Heart</span></h2>
+    </div>
+    <div class="container">
+      <h1>Just Generating/Copying Strong <br /><span>Random Password</span></h1>
+      <div class="show">
+        <input type="text" id="password" placeholder="Password" />
+        <i class="lnr lnr-file-add copy"></i>
+      </div>
+      <button><i class="lnr lnr-magic-wand"></i> Generate Password</button>
+    </div>
+
+    <script>
+      const passwordContent = document.getElementById("password");
+      const copy = document.querySelector(".copy");
+      const length = 9;
+
+      const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+      const number = "123456789";
+      const symbols = "*!@#$%^&()_+=][/><|~?|";
+
+      const allOtherCharacter = upperCase + lowerCase + number + symbols;
+
+      const createPassword = function () {
+        let password = "";
+        password += upperCase[Math.floor(Math.random() * upperCase.length)];
+        password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+        password += number[Math.floor(Math.random() * number.length)];
+        password += symbols[Math.floor(Math.random() * symbols.length)];
+
+        while (length > password.length) {
+          password +=
+            allOtherCharacter[
+              Math.floor(Math.random() * allOtherCharacter.length)
+            ];
+        }
+        passwordContent.value = password;
+      };
+
+      const button = document.querySelector("button");
+
+      button.addEventListener("click", function () {
+        createPassword();
+      });
+      const copyPassword = function () {
+        passwordContent.select();
+        document.execCommand("copy");
+      };
+      copy.addEventListener("click", function () {
+        copyPassword();
+      });
+    </script>
+  </body>
+</html>
